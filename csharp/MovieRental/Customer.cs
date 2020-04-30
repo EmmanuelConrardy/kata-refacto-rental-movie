@@ -6,7 +6,10 @@ namespace MovieRental
     {
 
         private string _name;
+        //Missing abstraction
         private List<Rental> _rentals = new List<Rental>();
+        private Rentals _rentals_ = new Rentals();
+
 
         public Customer(string name)
         {
@@ -16,6 +19,7 @@ namespace MovieRental
         public void addRental(Rental arg)
         {
             _rentals.Add(arg);
+            _rentals_.Add(arg);
         }
 
         public string getName()
@@ -25,11 +29,12 @@ namespace MovieRental
 
         public string statement()
         {
-            double totalAmount = 0;
-            int frequentRenterPoints = 0;
+           
             string result = "Rental Record for " + getName() + "\n";
 
             //START - Test seams
+            double totalAmount = 0;
+            int frequentRenterPoints = 0;
             foreach (Rental each in _rentals)
             {
                 totalAmount += each.GetAmount();

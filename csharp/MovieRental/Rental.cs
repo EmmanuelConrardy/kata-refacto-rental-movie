@@ -55,8 +55,7 @@
 
             return thisAmount;
         }
-        
-        //Move method
+
         public override string ToString()
         {
             var result = "\t" + this.getMovie().getTitle() + "\t" + GetAmount().ToString() + "\n";
