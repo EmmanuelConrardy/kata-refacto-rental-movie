@@ -20,14 +20,14 @@ namespace GivenCustomer
             Customer customer2 = new CustomerBuilder().withName("Julia").build();
             Movie movie1 = new Movie("Gone with the Wind", Movie.REGULAR);
             Rental rental1 = new Rental(movie1, 3); // 3 day rental
-            customer2.addRental(rental1);
+            customer2.AddRental(rental1);
         }
 
         [TestMethod]
         public void TestGetName()
         {
             Customer c = new Customer("David");
-            Assert.AreEqual("David", c.getName());
+            Assert.AreEqual("David", c.Name);
         }
     }
 }

@@ -4,29 +4,24 @@ namespace MovieRental
 {
     public class Customer
     {
+        public string Name { get; }
 
-        private string _name;
-        private Rentals _rentals_ = new Rentals();
+        private Rentals _rentals = new Rentals();
 
         public Customer(string name)
         {
-            _name = name;
+            Name = name;
         }
 
-        public void addRental(Rental arg)
+        public void AddRental(Rental arg)
         {
-            _rentals_.Add(arg);
+            _rentals.Add(arg);
         }
 
-        public string getName()
+        public string Statement()
         {
-            return _name;
-        }
-
-        public string statement()
-        {
-            string result = "Rental Record for " + getName() + "\n";
-            result += _rentals_.ToString();
+            string result = "Rental Record for " + Name + "\n";
+            result += _rentals.ToString();
 
             return result;
         }

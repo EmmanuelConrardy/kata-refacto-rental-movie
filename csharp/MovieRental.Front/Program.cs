@@ -11,9 +11,9 @@ namespace MovieRental.Front
             Rental rental = new Rental(movie, 3);
 
             Customer customer = new Customer("Arolla");
-            customer.addRental(rental);
+            customer.AddRental(rental);
 
-            String statement = customer.statement();
+            String statement = customer.Statement();
             Console.WriteLine(statement);
             Console.ReadKey();
         }

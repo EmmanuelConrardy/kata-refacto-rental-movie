@@ -29,7 +29,7 @@ namespace GivenCustomer
                     $"\t{REGULAR_TITLE}\t{amount}\n" +
                     $"Amount owed is {amount}\n" +
                     $"You earned {renterPoint} frequent renter points";
-            string statement = customer.statement();
+            string statement = customer.Statement();
             Assert.AreEqual(expected, statement);
         }
     }
@@ -58,7 +58,7 @@ namespace GivenCustomer
                     $"\t{NEW_RELEASE_TITLE}\t{amount}\n" +
                     $"Amount owed is {amount}\n" +
                     $"You earned {renterPoint} frequent renter points";
-            string statement = customer2.statement();
+            string statement = customer2.Statement();
             Assert.AreEqual(expected, statement);
         }
     }
@@ -89,7 +89,7 @@ namespace GivenCustomer
                     $"\t{CHILDREN_TITLE}\t{amount}\n" +
                     $"Amount owed is {amount}\n" +
                     $"You earned {renterPoint} frequent renter points";
-            string statement = customer2.statement();
+            string statement = customer2.Statement();
             Assert.AreEqual(expected, statement);
         }
     }
@@ -117,7 +117,7 @@ namespace GivenCustomer
                     "\tGone with the Wind\t11\n" +
                     "Amount owed is 23\n" +
                     "You earned 4 frequent renter points";
-            string statement = customer1.statement();
+            string statement = customer1.Statement();
             Assert.AreEqual(expected, statement);
         }
     }
