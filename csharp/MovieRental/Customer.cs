@@ -33,12 +33,13 @@ namespace MovieRental
             foreach (Rental each in _rentals)
             {
                 double thisAmount = 0;
-                
+
                 thisAmount = each.GetAmount();
                 frequentRenterPoints += each.GetFrequentRenterPoints();
+                
+                //extract method
+                result = PrintRental(result, each, thisAmount);
 
-                // show figures for this rental
-                result += "\t" + each.getMovie().getTitle() + "\t" + thisAmount.ToString() + "\n";
                 totalAmount += thisAmount;
             }
             //END - Test seams
@@ -50,27 +51,11 @@ namespace MovieRental
             return result;
         }
 
-        private double GetAmount(Rental each, double thisAmount)
+        private static string PrintRental(string result, Rental each, double thisAmount)
         {
-            //determine amounts for each line
-            switch (each.getMovie().getPriceCode())
-            {
-                case Movie.REGULAR:
-                    thisAmount += 2;
-                    if (each.getDaysRented() > 2)
-                        thisAmount += (each.getDaysRented() - 2) * 1.5;
-                    break;
-                case Movie.NEW_RELEASE:
-                    thisAmount += each.getDaysRented() * 3;
-                    break;
-                case Movie.CHILDRENS:
-                    thisAmount += 1.5;
-                    if (each.getDaysRented() > 3)
-                        thisAmount += (each.getDaysRented() - 3) * 1.5;
-                    break;
-            }
-
-            return thisAmount;
+            // show figures for this rental
+            result += "\t" + each.getMovie().getTitle() + "\t" + thisAmount.ToString() + "\n";
+            return result;
         }
     }
 
