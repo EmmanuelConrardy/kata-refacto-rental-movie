@@ -29,6 +29,7 @@ namespace MovieRental
             int frequentRenterPoints = 0;
             string result = "Rental Record for " + getName() + "\n";
 
+            //START - Test seams
             foreach (Rental each in _rentals)
             {
                 double thisAmount = 0;
@@ -61,6 +62,7 @@ namespace MovieRental
                 result += "\t" + each.getMovie().getTitle() + "\t" + thisAmount.ToString() + "\n";
                 totalAmount += thisAmount;
             }
+            //END - Test seams
 
             // add footer lines
             result += "Amount owed is " + totalAmount.ToString() + "\n";
