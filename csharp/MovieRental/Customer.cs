@@ -33,19 +33,19 @@ namespace MovieRental
             string result = "Rental Record for " + getName() + "\n";
 
             //START - Test seams
-            double totalAmount = 0;
-            int frequentRenterPoints = 0;
-            foreach (Rental each in _rentals)
-            {
-                totalAmount += each.GetAmount();
-                frequentRenterPoints += each.GetFrequentRenterPoints();
-                result += each.ToString();
-            }
+            //double totalAmount = 0;
+            //int frequentRenterPoints = 0;
+            //foreach (Rental each in _rentals)
+            //{
+            //    totalAmount += each.GetAmount();
+            //    frequentRenterPoints += each.GetFrequentRenterPoints();
+            //    result += each.ToString();
+            //}
             //END - Test seams
-
-            // add footer lines
-            result += "Amount owed is " + totalAmount.ToString() + "\n";
-            result += "You earned " + frequentRenterPoints.ToString() + " frequent renter points";
+            result += _rentals_.ToString();
+           // add footer lines
+           result += "Amount owed is " + _rentals_.GetTotalAmount().ToString() + "\n";
+            result += "You earned " + _rentals_.GetfrequentRenterPoints().ToString() + " frequent renter points";
 
             return result;
         }
