@@ -2,6 +2,11 @@
 **/*.iml
 **/*.eclipse
 **/.idea
+**/*.ncrunchsolution
+**/*.ncrunchsolution.user
+**/*.cache
+/csharp/MovieRental.Front/bin/
+/csharp/MovieRental.Front/obj/
 /csharp/MovieRental.Tests/bin/
 /csharp/MovieRental.Tests/obj/
 /csharp/MovieRental/.vs/
