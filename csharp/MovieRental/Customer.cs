@@ -8,7 +8,6 @@ namespace MovieRental
         private string _name;
         private Rentals _rentals_ = new Rentals();
 
-
         public Customer(string name)
         {
             _name = name;
@@ -28,8 +27,6 @@ namespace MovieRental
         {
             string result = "Rental Record for " + getName() + "\n";
             result += _rentals_.ToString();
-            result += "Amount owed is " + _rentals_.GetTotalAmount().ToString() + "\n";
-            result += "You earned " + _rentals_.GetfrequentRenterPoints().ToString() + " frequent renter points";
 
             return result;
         }
