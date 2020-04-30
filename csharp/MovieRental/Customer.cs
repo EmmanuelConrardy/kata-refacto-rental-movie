@@ -32,15 +32,9 @@ namespace MovieRental
             //START - Test seams
             foreach (Rental each in _rentals)
             {
-                double thisAmount = 0;
-
-                thisAmount = each.GetAmount();
+                totalAmount += each.GetAmount();
                 frequentRenterPoints += each.GetFrequentRenterPoints();
-                
-                //extract method
-                result = PrintRental(result, each, thisAmount);
-
-                totalAmount += thisAmount;
+                result += each.ToString();
             }
             //END - Test seams
 
