@@ -34,11 +34,8 @@ namespace MovieRental
             {
                 double thisAmount = 0;
                 
-                //Extract method
-                thisAmount = GetAmount(each, thisAmount);
-
-                //Extract method
-                frequentRenterPoints = GetFrequentRenterPoints(frequentRenterPoints, each);
+                thisAmount = each.GetAmount();
+                frequentRenterPoints += each.GetFrequentRenterPoints();
 
                 // show figures for this rental
                 result += "\t" + each.getMovie().getTitle() + "\t" + thisAmount.ToString() + "\n";
@@ -74,16 +71,6 @@ namespace MovieRental
             }
 
             return thisAmount;
-        }
-
-        private int GetFrequentRenterPoints(int frequentRenterPoints, Rental each)
-        {
-            // add frequent renter points
-            frequentRenterPoints++;
-            // add bonus for a two day new release rental
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
-                frequentRenterPoints++;
-            return frequentRenterPoints;
         }
     }
 
