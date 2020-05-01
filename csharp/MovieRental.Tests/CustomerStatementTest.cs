@@ -18,7 +18,7 @@ namespace GivenCustomer
         [DataRow(9, "12,5", "1", DisplayName = "9 day rental")]
         public void With(int dayRental, string amount, string renterPoint)
         {
-            Movie regular = new Movie(REGULAR_TITLE, Movie.REGULAR);
+            Movie regular = new Movie(REGULAR_TITLE, PriceCode.REGULAR);
             Rental rental = new Rental(regular, dayRental);
             Customer customer =
                     new CustomerBuilder()

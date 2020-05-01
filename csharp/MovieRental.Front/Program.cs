@@ -6,7 +6,7 @@ namespace MovieRental.Front
     {
         static void Main(string[] args)
         {
-            Movie movie = new Movie("Transformer", Movie.REGULAR);
+            Movie movie = new Movie("Transformer", PriceCode.REGULAR);
 
             Rental rental = new Rental(movie, 3);
 

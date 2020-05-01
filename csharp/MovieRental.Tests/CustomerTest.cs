@@ -18,7 +18,7 @@ namespace GivenCustomer
         public void TestAddRental()
         {
             Customer customer2 = new CustomerBuilder().withName("Julia").build();
-            Movie movie1 = new Movie("Gone with the Wind", Movie.REGULAR);
+            Movie movie1 = new Movie("Gone with the Wind", PriceCode.REGULAR);
             Rental rental1 = new Rental(movie1, 3); // 3 day rental
             customer2.AddRental(rental1);
         }

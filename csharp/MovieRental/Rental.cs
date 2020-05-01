@@ -20,7 +20,9 @@ namespace MovieRental
         {
             var frequentRenterPoints = 1;
             // add bonus for a two day new release rental
-            if ((_movie.getPriceCode() == Movie.NEW_RELEASE) && _daysRented > 1)
+            if (((_movie.getPriceCode() == Movie.NEW_RELEASE)
+                || _movie.getPriceCode_() == PriceCode.NEW_RELEASE)
+                && _daysRented > 1)
                 frequentRenterPoints++;
             return frequentRenterPoints;
         }
