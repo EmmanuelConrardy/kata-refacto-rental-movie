@@ -20,10 +20,7 @@ namespace MovieRental
 
         public string Statement()
         {
-            string result = "Rental Record for " + Name + "\n";
-            result += _rentals.ToString();
-
-            return result;
+            return _rentals.GetStatementFor(Name);
         }
     }
 

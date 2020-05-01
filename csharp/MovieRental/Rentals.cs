@@ -5,9 +5,10 @@ namespace MovieRental
 {
     public class Rentals : List<Rental>
     {
-        public override string ToString()
+        public string GetStatementFor(string name)
         {
-            string result = GetResultOfRental();
+            string result = "Rental Record for " + name + "\n";
+            result += GetResultOfRental();
             result += "Amount owed is " + this.GetTotalAmount().ToString() + "\n";
             result += "You earned " + this.GetfrequentRenterPoints().ToString() + " frequent renter points";
 

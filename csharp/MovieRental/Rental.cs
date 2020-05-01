@@ -16,12 +16,12 @@
 
         public int GetFrequentRenterPoints()
         {
-            return pricer.GetFrequentRenterPointsFor(_daysRented);
+            return pricer.GetFrequentRenterPointsFor(_daysRented_);
         }
 
         public double GetAmount()
         {
-            return pricer.GetAmountFor(_daysRented);
+            return pricer.GetAmountFor(_daysRented_);
         }
 
         public override string ToString()
