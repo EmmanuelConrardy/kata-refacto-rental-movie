@@ -8,13 +8,6 @@
         private MoviePrice pricer;
         private static MoviePricer moviePricer = new MoviePricer();
 
-        public Rental(Movie movie, int daysRented)
-        {
-            _movie = movie;
-            _daysRented = daysRented;
-            pricer = moviePricer[_movie.PriceCode];
-        }
-
         public Rental(Movie movie, uint daysRented)
         {
             _movie = movie;

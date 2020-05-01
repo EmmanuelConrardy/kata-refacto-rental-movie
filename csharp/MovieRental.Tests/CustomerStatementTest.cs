@@ -11,12 +11,12 @@ namespace GivenCustomer
         private const string REGULAR_BUYER = "Sallie";
 
         [TestMethod]
-        [DataRow(0, "2", "1", DisplayName = "0 day rental -- bug ?")]
-        [DataRow(1, "2", "1", DisplayName = "1 day rental")]
-        [DataRow(2, "2", "1", DisplayName = "2 day rental")]
-        [DataRow(3, "3,5", "1", DisplayName = "3 day rental")]
-        [DataRow(9, "12,5", "1", DisplayName = "9 day rental")]
-        public void With(int dayRental, string amount, string renterPoint)
+        [DataRow((uint)0, "2", "1", DisplayName = "0 day rental -- bug ?")]
+        [DataRow((uint)1, "2", "1", DisplayName = "1 day rental")]
+        [DataRow((uint)2, "2", "1", DisplayName = "2 day rental")]
+        [DataRow((uint)3, "3,5", "1", DisplayName = "3 day rental")]
+        [DataRow((uint)9, "12,5", "1", DisplayName = "9 day rental")]
+        public void With(uint dayRental, string amount, string renterPoint)
         {
             Movie regular = new Movie(REGULAR_TITLE, PriceCode.REGULAR);
             Rental rental = new Rental(regular, dayRental);
@@ -41,11 +41,11 @@ namespace GivenCustomer
         private const string NEW_RELEASE_BUYER = "Margo";
 
         [TestMethod]
-        [DataRow(0, "0", "1", DisplayName = "0 day rental -- bug ?")]
-        [DataRow(1, "3", "1", DisplayName = "1 day rental")]
-        [DataRow(2, "6", "2", DisplayName = "2 day rental")]
-        [DataRow(3, "9", "2", DisplayName = "3 day rental")]
-        public void With(int dayRental, string amount, string renterPoint)
+        [DataRow((uint)0, "0", "1", DisplayName = "0 day rental -- bug ?")]
+        [DataRow((uint)1, "3", "1", DisplayName = "1 day rental")]
+        [DataRow((uint)2, "6", "2", DisplayName = "2 day rental")]
+        [DataRow((uint)3, "9", "2", DisplayName = "3 day rental")]
+        public void With(uint dayRental, string amount, string renterPoint)
         {
             Movie newRelease = new Movie(NEW_RELEASE_TITLE, PriceCode.NEW_RELEASE);
             Rental rental= new Rental(newRelease, dayRental);
@@ -70,13 +70,13 @@ namespace GivenCustomer
         private const string CHILDREN_BUYER = "David";
 
         [TestMethod]
-        [DataRow(0, "1,5", "1", DisplayName = "0 day rental -- bug ?")]
-        [DataRow(1, "1,5", "1", DisplayName = "1 day rental")]
-        [DataRow(2, "1,5", "1", DisplayName = "2 day rental")]
-        [DataRow(3, "1,5", "1", DisplayName = "3 day rental")]
-        [DataRow(4, "3", "1", DisplayName = "4 day rental")]
-        [DataRow(5, "4,5", "1", DisplayName = "4 day rental")]
-        public void With(int dayRental, string amount, string renterPoint)
+        [DataRow((uint)0, "1,5", "1", DisplayName = "0 day rental -- bug ?")]
+        [DataRow((uint)1, "1,5", "1", DisplayName = "1 day rental")]
+        [DataRow((uint)2, "1,5", "1", DisplayName = "2 day rental")]
+        [DataRow((uint)3, "1,5", "1", DisplayName = "3 day rental")]
+        [DataRow((uint)4, "3", "1", DisplayName = "4 day rental")]
+        [DataRow((uint)5, "4,5", "1", DisplayName = "4 day rental")]
+        public void With(uint dayRental, string amount, string renterPoint)
         {
             Movie newRelease = new Movie(CHILDREN_TITLE, PriceCode.CHILDRENS);
             Rental rental = new Rental(newRelease, dayRental);
