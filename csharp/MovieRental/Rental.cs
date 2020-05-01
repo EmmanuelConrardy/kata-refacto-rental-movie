@@ -8,10 +8,17 @@ namespace MovieRental
         private Movie _movie;
         private int _daysRented;
 
+        //missing abstraction
+        private Dictionary<int, double> movieAmount = new Dictionary<int, double>();
+
         public Rental(Movie movie, int daysRented)
         {
             _movie = movie;
             _daysRented = daysRented;
+            //Factory
+            movieAmount.Add(Movie.REGULAR, SetAmountForRegular(0));
+            movieAmount.Add(Movie.NEW_RELEASE, SetAmountForNewRelease(0));
+            movieAmount.Add(Movie.CHILDRENS, SetAmountForChildren(0));
         }
 
         public int getDaysRented()
@@ -35,24 +42,10 @@ namespace MovieRental
 
         public double GetAmount()
         {
-            var thisAmount = 0.0;
-            //determine amounts for each line
-            switch (this.getMovie().getPriceCode())
-            {
-                case Movie.REGULAR:
-                    thisAmount = SetAmountForRegular(thisAmount);
-                    break;
-                case Movie.NEW_RELEASE:
-                    thisAmount = SetAmountForNewRelease(thisAmount);
-                    break;
-                case Movie.CHILDRENS:
-                    thisAmount = SetAmountForChildren(thisAmount);
-                    break;
-            }
-
-            return thisAmount;
+            return movieAmount[_movie.getPriceCode()];
         }
 
+        //SRP
         private double SetAmountForChildren(double thisAmount)
         {
             thisAmount += 1.5;
@@ -61,12 +54,14 @@ namespace MovieRental
             return thisAmount;
         }
 
+        //SRP
         private double SetAmountForNewRelease(double thisAmount)
         {
             thisAmount += this.getDaysRented() * 3;
             return thisAmount;
         }
 
+        //SRP
         private double SetAmountForRegular(double thisAmount)
         {
             thisAmount += 2;
