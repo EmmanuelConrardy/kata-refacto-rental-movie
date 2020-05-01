@@ -1,4 +1,7 @@
-﻿namespace MovieRental
+﻿using System;
+using System.Collections.Generic;
+
+namespace MovieRental
 {
     public class Rental
     {
@@ -21,7 +24,6 @@
             return _movie;
         }
 
-        //Move method
         public int GetFrequentRenterPoints()
         {
             var frequentRenterPoints = 1;
@@ -31,7 +33,6 @@
             return frequentRenterPoints;
         }
 
-        //Move method
         public double GetAmount()
         {
             var thisAmount = 0.0;
@@ -39,20 +40,38 @@
             switch (this.getMovie().getPriceCode())
             {
                 case Movie.REGULAR:
-                    thisAmount += 2;
-                    if (this.getDaysRented() > 2)
-                        thisAmount += (this.getDaysRented() - 2) * 1.5;
+                    thisAmount = SetAmountForRegular(thisAmount);
                     break;
                 case Movie.NEW_RELEASE:
-                    thisAmount += this.getDaysRented() * 3;
+                    thisAmount = SetAmountForNewRelease(thisAmount);
                     break;
                 case Movie.CHILDRENS:
-                    thisAmount += 1.5;
-                    if (this.getDaysRented() > 3)
-                        thisAmount += (this.getDaysRented() - 3) * 1.5;
+                    thisAmount = SetAmountForChildren(thisAmount);
                     break;
             }
 
+            return thisAmount;
+        }
+
+        private double SetAmountForChildren(double thisAmount)
+        {
+            thisAmount += 1.5;
+            if (this.getDaysRented() > 3)
+                thisAmount += (this.getDaysRented() - 3) * 1.5;
+            return thisAmount;
+        }
+
+        private double SetAmountForNewRelease(double thisAmount)
+        {
+            thisAmount += this.getDaysRented() * 3;
+            return thisAmount;
+        }
+
+        private double SetAmountForRegular(double thisAmount)
+        {
+            thisAmount += 2;
+            if (this.getDaysRented() > 2)
+                thisAmount += (this.getDaysRented() - 2) * 1.5;
             return thisAmount;
         }
 
