@@ -47,7 +47,7 @@ namespace GivenCustomer
         [DataRow(3, "9", "2", DisplayName = "3 day rental")]
         public void With(int dayRental, string amount, string renterPoint)
         {
-            Movie newRelease = new Movie(NEW_RELEASE_TITLE, Movie.NEW_RELEASE);
+            Movie newRelease = new Movie(NEW_RELEASE_TITLE, PriceCode.NEW_RELEASE);
             Rental rental= new Rental(newRelease, dayRental);
             Customer customer2 =
                     new CustomerBuilder()
@@ -78,7 +78,7 @@ namespace GivenCustomer
         [DataRow(5, "4,5", "1", DisplayName = "4 day rental")]
         public void With(int dayRental, string amount, string renterPoint)
         {
-            Movie newRelease = new Movie(CHILDREN_TITLE, Movie.CHILDRENS);
+            Movie newRelease = new Movie(CHILDREN_TITLE, PriceCode.CHILDRENS);
             Rental rental = new Rental(newRelease, dayRental);
             Customer customer2 =
                     new CustomerBuilder()
@@ -100,11 +100,11 @@ namespace GivenCustomer
         [TestMethod]
         public void ChildrenWith6DaysRental_NewReleaseWith2DaysRental_RegularWith8DaysRental()
         {
-            Movie movie1 = new Movie("Madagascar", Movie.CHILDRENS);
+            Movie movie1 = new Movie("Madagascar", PriceCode.CHILDRENS);
             Rental rental1 = new Rental(movie1, 6); // 6 day rental
-            Movie movie2 = new Movie("Star Wars", Movie.NEW_RELEASE);
+            Movie movie2 = new Movie("Star Wars", PriceCode.NEW_RELEASE);
             Rental rental2 = new Rental(movie2, 2); // 2 day rental
-            Movie movie3 = new Movie("Gone with the Wind", Movie.REGULAR);
+            Movie movie3 = new Movie("Gone with the Wind", PriceCode.REGULAR);
             Rental rental3 = new Rental(movie3, 8); // 8 day rental
             Customer customer1
                     = new CustomerBuilder()
