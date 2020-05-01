@@ -10,6 +10,7 @@ namespace MovieRental
 
         //missing abstraction
         private Dictionary<int, double> moviePrice = new Dictionary<int, double>();
+        private MoviePricer moviePrice_ = new MoviePricer();
 
         public Rental(Movie movie, int daysRented)
         {
@@ -32,6 +33,7 @@ namespace MovieRental
 
         public double GetAmount()
         {
+            return moviePrice_[_movie.getPriceCode()].GetAmountFor(_daysRented);
             return moviePrice[_movie.getPriceCode()];
         }
 
