@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MovieRental
+﻿namespace MovieRental
 {
     public class Rental
     {
@@ -20,13 +17,6 @@ namespace MovieRental
         public int GetFrequentRenterPoints()
         {
             return pricer.GetFrequentRenterPointsFor(_daysRented);
-            //var frequentRenterPoints = 1;
-
-            //if ( _movie.Use(PriceCode.NEW_RELEASE) 
-            //    && _daysRented > thresholdForFrequenteRenterPointBonus)
-            //    return 2;
-
-          //  return frequentRenterPoints;
         }
 
         public double GetAmount()
