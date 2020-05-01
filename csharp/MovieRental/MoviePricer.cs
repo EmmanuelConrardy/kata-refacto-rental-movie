@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MovieRental
 {
-    public class MoviePricer : Dictionary<int, MoviePrice>
+    public class MoviePricer : Dictionary<PriceCode, MoviePrice>
     {
         public MoviePricer()
-        {
-            this.Add(Movie.REGULAR, new MovieRegular());
-            this.Add(Movie.NEW_RELEASE, new MovieNewRelease());
-            this.Add(Movie.CHILDRENS, new MovieChildren());
-        }
-    }
-
-    public class MoviePricer_ : Dictionary<PriceCode, MoviePrice>
-    {
-        public MoviePricer_()
         {
             this.Add(PriceCode.REGULAR, new MovieRegular());
             this.Add(PriceCode.NEW_RELEASE, new MovieNewRelease());
@@ -34,7 +23,7 @@ namespace MovieRental
             Initialize();
         }
 
-        public abstract void Initialize();
+        protected abstract void Initialize();
 
         public virtual double GetAmountFor(int daysRented)
         {
@@ -47,7 +36,7 @@ namespace MovieRental
 
     public class MovieRegular : MoviePrice
     {
-        public override void Initialize()
+        protected override void Initialize()
         {
             thresholdForReducPrice = 2;
             reducePrice = 1.5;
@@ -57,7 +46,7 @@ namespace MovieRental
 
     public class MovieChildren : MoviePrice
     {
-        public override void Initialize()
+        protected override void Initialize()
         {
             thresholdForReducPrice = 3;
             reducePrice = 1.5;
@@ -67,7 +56,7 @@ namespace MovieRental
 
     public class MovieNewRelease : MoviePrice
     {
-        public override void Initialize()
+        protected override void Initialize()
         {
             thresholdForReducPrice = 0;
             reducePrice = 3;

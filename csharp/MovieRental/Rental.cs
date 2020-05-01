@@ -8,7 +8,6 @@ namespace MovieRental
         private Movie _movie;
         private int _daysRented;
         private MoviePricer moviePricer = new MoviePricer();
-        private MoviePricer_ moviePricer_ = new MoviePricer_();
 
         public Rental(Movie movie, int daysRented)
         {
@@ -20,17 +19,15 @@ namespace MovieRental
         {
             var frequentRenterPoints = 1;
             // add bonus for a two day new release rental
-            if (((_movie.getPriceCode() == Movie.NEW_RELEASE)
-                || _movie.getPriceCode_() == PriceCode.NEW_RELEASE)
-                && _daysRented > 1)
+            if ( _movie.getPriceCode() == PriceCode.NEW_RELEASE && _daysRented > 1)
                 frequentRenterPoints++;
             return frequentRenterPoints;
         }
 
         public double GetAmount()
         {
-            return moviePricer_[_movie.getPriceCode_()].GetAmountFor(_daysRented);
-            return moviePricer[_movie.getPriceCode()].GetAmountFor(_daysRented);
+            var pricer = moviePricer[_movie.getPriceCode()];
+            return pricer.GetAmountFor(_daysRented);
         }
 
         public override string ToString()
