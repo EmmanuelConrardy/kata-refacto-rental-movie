@@ -14,26 +14,28 @@ namespace MovieRental
 
     public abstract class MoviePrice
     {
+        private const int bonusPoint = 1;
         protected int thresholdForReducPrice;
         protected double reducePrice;
         protected double fixedPrice;
-        protected int frequentRenterPointsBase = 1;
+        protected int frequentRenterPointsBase;
         protected int thresholdForFrequenteRenterPointBonus = int.MaxValue;
 
         public MoviePrice()
         {
             Initialize();
         }
+
         protected abstract void Initialize();
 
         public virtual int GetFrequentRenterPointsFor(int daysRented)
         {
-            if (daysRented > thresholdForFrequenteRenterPointBonus)
-                return frequentRenterPointsBase + 1;
+            if (ShouldAddBonusPointFor(daysRented))
+                return frequentRenterPointsBase + bonusPoint;
 
             return frequentRenterPointsBase;
         }
-
+     
         public virtual double GetAmountFor(int daysRented)
         {
             var amount = fixedPrice;
@@ -41,6 +43,12 @@ namespace MovieRental
                 amount += (daysRented - thresholdForReducPrice) * reducePrice;
             return amount;
         }
+
+        private bool ShouldAddBonusPointFor(int daysRented)
+        {
+            return daysRented > thresholdForFrequenteRenterPointBonus;
+        }
+
     }
 
     public class MovieRegular : MoviePrice
@@ -50,6 +58,7 @@ namespace MovieRental
             thresholdForReducPrice = 2;
             reducePrice = 1.5;
             fixedPrice = 2;
+            frequentRenterPointsBase = 1;
         }
     }
 
@@ -60,6 +69,7 @@ namespace MovieRental
             thresholdForReducPrice = 3;
             reducePrice = 1.5;
             fixedPrice = 1.5;
+            frequentRenterPointsBase = 1;
         }
     }
 
@@ -71,6 +81,7 @@ namespace MovieRental
             thresholdForReducPrice = 0;
             reducePrice = 3;
             fixedPrice = 0;
+            frequentRenterPointsBase = 1;
             thresholdForFrequenteRenterPointBonus = 1;
         }
     }
