@@ -75,7 +75,6 @@ namespace MovieRental
 
     public class MovieNewRelease : MoviePrice
     {
-
         protected override void Initialize()
         {
             thresholdForReducPrice = 0;

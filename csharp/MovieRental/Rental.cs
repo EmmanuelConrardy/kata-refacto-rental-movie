@@ -4,6 +4,7 @@
     {
         private Movie _movie;
         private int _daysRented;
+        private uint _daysRented_;
         private MoviePrice pricer;
         private static MoviePricer moviePricer = new MoviePricer();
 
@@ -11,7 +12,15 @@
         {
             _movie = movie;
             _daysRented = daysRented;
-            pricer = moviePricer[_movie.getPriceCode()];
+            pricer = moviePricer[_movie.PriceCode];
+        }
+
+        public Rental(Movie movie, uint daysRented)
+        {
+            _movie = movie;
+            _daysRented_ = daysRented;
+            _daysRented = (int)daysRented;
+            pricer = moviePricer[_movie.PriceCode];
         }
 
         public int GetFrequentRenterPoints()
