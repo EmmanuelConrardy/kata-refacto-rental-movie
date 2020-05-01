@@ -5,7 +5,6 @@ namespace MovieRental
 {
     public class Rental
     {
-        private const int thresholdForFrequenteRenterPointBonus = 1;
         private Movie _movie;
         private int _daysRented;
         private MoviePrice pricer;
@@ -20,14 +19,14 @@ namespace MovieRental
 
         public int GetFrequentRenterPoints()
         {
-            //pricer.GetFrequentRenterPoints();
-            var frequentRenterPoints = 1;
+            return pricer.GetFrequentRenterPointsFor(_daysRented);
+            //var frequentRenterPoints = 1;
 
-            if ( _movie.Use(PriceCode.NEW_RELEASE) 
-                && _daysRented > thresholdForFrequenteRenterPointBonus)
-                return 2;
+            //if ( _movie.Use(PriceCode.NEW_RELEASE) 
+            //    && _daysRented > thresholdForFrequenteRenterPointBonus)
+            //    return 2;
 
-            return frequentRenterPoints;
+          //  return frequentRenterPoints;
         }
 
         public double GetAmount()

@@ -17,10 +17,16 @@ namespace MovieRental
         protected int thresholdForReducPrice;
         protected double reducePrice;
         protected double fixedPrice;
+        protected int frequentRenterPointsBase = 1;
 
         public MoviePrice()
         {
             Initialize();
+        }
+
+        public virtual int GetFrequentRenterPointsFor(int daysRented)
+        {
+            return frequentRenterPointsBase;
         }
 
         protected abstract void Initialize();
@@ -56,11 +62,21 @@ namespace MovieRental
 
     public class MovieNewRelease : MoviePrice
     {
+        private const int thresholdForFrequenteRenterPointBonus = 1;
+
         protected override void Initialize()
         {
             thresholdForReducPrice = 0;
             reducePrice = 3;
             fixedPrice = 0;
+        }
+
+        public override int GetFrequentRenterPointsFor(int daysRented)
+        {
+            if (daysRented > thresholdForFrequenteRenterPointBonus)
+                return frequentRenterPointsBase + 1;
+
+            return frequentRenterPointsBase;
         }
     }
 }
