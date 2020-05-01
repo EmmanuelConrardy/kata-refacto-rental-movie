@@ -2,7 +2,7 @@
 using MovieRental;
 using MovieRental.Tests;
 
-namespace GivenCustomer
+namespace MovieRental.Tests
 {
     [TestClass]
     public class CustomerTest

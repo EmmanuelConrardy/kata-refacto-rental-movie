@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace MovieRental
 {
@@ -7,34 +8,26 @@ namespace MovieRental
     {
         public string GetStatementFor(string name)
         {
-            string result = "Rental Record for " + name + "\n";
-            result += GetResultOfRental();
-            result += "Amount owed is " + this.GetTotalAmount().ToString() + "\n";
-            result += "You earned " + this.GetfrequentRenterPoints().ToString() + " frequent renter points";
+            var statement = new StringBuilder();
 
-            return result;
+            statement.Append("Rental Record for " + name + "\n");
+            ForEach(rental => 
+                statement.Append("\t" + rental.GetMovieTitle() + "\t" + rental.GetAmount() + "\n")
+            );
+            statement.Append("Amount owed is " + GetTotalAmount() + "\n");
+            statement.Append("You earned " + GetFrequentRenterPoints() + " frequent renter points");
+
+            return statement.ToString();
         }
 
-        private string GetResultOfRental()
+        private string GetTotalAmount()
         {
-            var result = string.Empty;
-
-            foreach (Rental each in this)
-            {
-                result += each.ToString();
-            }
-
-            return result;
+            return this.Sum(r => r.GetAmount()).ToString();
         }
 
-        private double GetTotalAmount()
+        private string GetFrequentRenterPoints()
         {
-            return this.Sum(r => r.GetAmount());
-        }
-
-        private int GetfrequentRenterPoints()
-        {
-            return this.Sum(r => r.GetFrequentRenterPoints());
+            return this.Sum(r => r.GetFrequentRenterPoints()).ToString();
         }
 
     }

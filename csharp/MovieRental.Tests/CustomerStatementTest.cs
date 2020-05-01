@@ -16,7 +16,7 @@ namespace GivenCustomer
         [DataRow((uint)2, "2", "1", DisplayName = "2 day rental")]
         [DataRow((uint)3, "3,5", "1", DisplayName = "3 day rental")]
         [DataRow((uint)9, "12,5", "1", DisplayName = "9 day rental")]
-        public void With(uint dayRental, string amount, string renterPoint)
+        public void WithDaysRental(uint dayRental, string amount, string renterPoint)
         {
             Movie regular = new Movie(REGULAR_TITLE, PriceCode.REGULAR);
             Rental rental = new Rental(regular, dayRental);
@@ -45,7 +45,7 @@ namespace GivenCustomer
         [DataRow((uint)1, "3", "1", DisplayName = "1 day rental")]
         [DataRow((uint)2, "6", "2", DisplayName = "2 day rental")]
         [DataRow((uint)3, "9", "2", DisplayName = "3 day rental")]
-        public void With(uint dayRental, string amount, string renterPoint)
+        public void WithDaysRental(uint dayRental, string amount, string renterPoint)
         {
             Movie newRelease = new Movie(NEW_RELEASE_TITLE, PriceCode.NEW_RELEASE);
             Rental rental= new Rental(newRelease, dayRental);
@@ -75,8 +75,8 @@ namespace GivenCustomer
         [DataRow((uint)2, "1,5", "1", DisplayName = "2 day rental")]
         [DataRow((uint)3, "1,5", "1", DisplayName = "3 day rental")]
         [DataRow((uint)4, "3", "1", DisplayName = "4 day rental")]
-        [DataRow((uint)5, "4,5", "1", DisplayName = "4 day rental")]
-        public void With(uint dayRental, string amount, string renterPoint)
+        [DataRow((uint)5, "4,5", "1", DisplayName = "5 day rental")]
+        public void WithDaysRental(uint dayRental, string amount, string renterPoint)
         {
             Movie newRelease = new Movie(CHILDREN_TITLE, PriceCode.CHILDRENS);
             Rental rental = new Rental(newRelease, dayRental);

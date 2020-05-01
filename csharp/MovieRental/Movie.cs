@@ -3,12 +3,24 @@
     public class Movie
     {
         public string Title { get; }
-        public PriceCode PriceCode { get; }
+
+        private static MoviePricer moviePricer = new MoviePricer();
+        private MoviePrice pricer;
 
         public Movie(string title, PriceCode priceCode)
         {
             Title = title;
-            PriceCode = priceCode;
+            pricer = moviePricer[priceCode];
+        }
+
+        public int GetFrequentRenterPointsFor(uint daysRented)
+        {
+            return pricer.GetFrequentRenterPointsFor(daysRented);
+        }
+
+        public double GetAmountFor(uint daysRented)
+        {
+            return pricer.GetAmountFor(daysRented);
         }
     }
 }
