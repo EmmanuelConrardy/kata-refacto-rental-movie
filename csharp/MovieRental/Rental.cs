@@ -9,55 +9,45 @@ namespace MovieRental
         private int _daysRented;
 
         //missing abstraction
-        private Dictionary<int, double> movieAmount = new Dictionary<int, double>();
+        private Dictionary<int, double> moviePrice = new Dictionary<int, double>();
 
         public Rental(Movie movie, int daysRented)
         {
             _movie = movie;
             _daysRented = daysRented;
             //Factory
-            movieAmount.Add(Movie.REGULAR, SetAmountForRegular());
-            movieAmount.Add(Movie.NEW_RELEASE, SetAmountForNewRelease());
-            movieAmount.Add(Movie.CHILDRENS, SetAmountForChildren());
-        }
-
-        public int getDaysRented()
-        {
-            return _daysRented;
-        }
-
-        public Movie getMovie()
-        {
-            return _movie;
+            moviePrice.Add(Movie.REGULAR, SetAmountForRegular());
+            moviePrice.Add(Movie.NEW_RELEASE, SetAmountForNewRelease());
+            moviePrice.Add(Movie.CHILDRENS, SetAmountForChildren());
         }
 
         public int GetFrequentRenterPoints()
         {
             var frequentRenterPoints = 1;
             // add bonus for a two day new release rental
-            if ((this.getMovie().getPriceCode() == Movie.NEW_RELEASE) && this.getDaysRented() > 1)
+            if ((_movie.getPriceCode() == Movie.NEW_RELEASE) && _daysRented > 1)
                 frequentRenterPoints++;
             return frequentRenterPoints;
         }
 
         public double GetAmount()
         {
-            return movieAmount[_movie.getPriceCode()];
+            return moviePrice[_movie.getPriceCode()];
         }
 
         //SRP
         private double SetAmountForChildren()
         {
             var thisAmount = 1.5;
-            if (this.getDaysRented() > 3)
-                thisAmount += (this.getDaysRented() - 3) * 1.5;
+            if (_daysRented > 3)
+                thisAmount += (_daysRented - 3) * 1.5;
             return thisAmount;
         }
 
         //SRP
         private double SetAmountForNewRelease()
         {
-            var thisAmount = this.getDaysRented() * 3;
+            var thisAmount = _daysRented * 3;
             return thisAmount;
         }
 
@@ -65,14 +55,14 @@ namespace MovieRental
         private double SetAmountForRegular()
         {
             var thisAmount = 2d;
-            if (this.getDaysRented() > 2)
-                thisAmount += (this.getDaysRented() - 2) * 1.5;
+            if (_daysRented > 2)
+                thisAmount += (_daysRented - 2) * 1.5;
             return thisAmount;
         }
 
         public override string ToString()
         {
-            var result = "\t" + this.getMovie().getTitle() + "\t" + GetAmount().ToString() + "\n";
+            var result = "\t" + _movie.getTitle() + "\t" + GetAmount().ToString() + "\n";
             return result;
         }
     }
