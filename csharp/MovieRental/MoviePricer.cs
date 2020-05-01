@@ -28,7 +28,7 @@ namespace MovieRental
 
         protected abstract void Initialize();
 
-        public virtual int GetFrequentRenterPointsFor(int daysRented)
+        public virtual int GetFrequentRenterPointsFor(uint daysRented)
         {
             if (ShouldAddBonusPointFor(daysRented))
                 return frequentRenterPointsBase + bonusPoint;
@@ -36,7 +36,7 @@ namespace MovieRental
             return frequentRenterPointsBase;
         }
      
-        public virtual double GetAmountFor(int daysRented)
+        public virtual double GetAmountFor(uint daysRented)
         {
             var amount = fixedPrice;
             if (daysRented > thresholdForReducPrice)
@@ -44,7 +44,7 @@ namespace MovieRental
             return amount;
         }
 
-        private bool ShouldAddBonusPointFor(int daysRented)
+        private bool ShouldAddBonusPointFor(uint daysRented)
         {
             return daysRented > thresholdForFrequenteRenterPointBonus;
         }
