@@ -28,10 +28,10 @@ namespace MovieRental
 
         public virtual double GetAmountFor(int daysRented)
         {
-            var thisAmount = fixedPrice;
+            var amount = fixedPrice;
             if (daysRented > thresholdForReducPrice)
-                thisAmount += (daysRented - thresholdForReducPrice) * reducePrice;
-            return thisAmount;
+                amount += (daysRented - thresholdForReducPrice) * reducePrice;
+            return amount;
         }
     }
 

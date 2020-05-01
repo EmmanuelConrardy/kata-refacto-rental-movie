@@ -7,7 +7,7 @@ namespace MovieRental
     {
         private Movie _movie;
         private int _daysRented;
-        private MoviePricer moviePrice_ = new MoviePricer();
+        private MoviePricer moviePricer = new MoviePricer();
 
         public Rental(Movie movie, int daysRented)
         {
@@ -26,7 +26,7 @@ namespace MovieRental
 
         public double GetAmount()
         {
-            return moviePrice_[_movie.getPriceCode()].GetAmountFor(_daysRented);
+            return moviePricer[_movie.getPriceCode()].GetAmountFor(_daysRented);
         }
 
         public override string ToString()
