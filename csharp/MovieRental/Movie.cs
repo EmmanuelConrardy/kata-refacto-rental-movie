@@ -1,32 +1,23 @@
-﻿using System;
-
-namespace MovieRental
+﻿namespace MovieRental
 {
-    public enum PriceCode
-    {
-        REGULAR = 0,
-        NEW_RELEASE = 1,
-        CHILDRENS = 2
-    }
     public class Movie
     {
-        private string _title;
+        public string Title { get; }
         private PriceCode _priceCode;
 
         public Movie(string title, PriceCode priceCode)
         {
-            _title = title;
+            Title = title;
             _priceCode = priceCode;
         }
 
+        public bool Use(PriceCode priceCode)
+        {
+            return _priceCode == priceCode;
+        }
         public PriceCode getPriceCode()
         {
             return _priceCode;
-        }
-
-        public string getTitle()
-        {
-            return _title;
         }
     }
 }
