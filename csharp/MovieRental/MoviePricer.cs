@@ -13,6 +13,16 @@ namespace MovieRental
         }
     }
 
+    public class MoviePricer_ : Dictionary<PriceCode, MoviePrice>
+    {
+        public MoviePricer_()
+        {
+            this.Add(PriceCode.REGULAR, new MovieRegular());
+            this.Add(PriceCode.NEW_RELEASE, new MovieNewRelease());
+            this.Add(PriceCode.CHILDRENS, new MovieChildren());
+        }
+    }
+
     public abstract class MoviePrice
     {
         protected int thresholdForReducPrice;

@@ -8,6 +8,7 @@ namespace MovieRental
         private Movie _movie;
         private int _daysRented;
         private MoviePricer moviePricer = new MoviePricer();
+        private MoviePricer_ moviePricer_ = new MoviePricer_();
 
         public Rental(Movie movie, int daysRented)
         {
@@ -26,6 +27,7 @@ namespace MovieRental
 
         public double GetAmount()
         {
+            return moviePricer_[_movie.getPriceCode_()].GetAmountFor(_daysRented);
             return moviePricer[_movie.getPriceCode()].GetAmountFor(_daysRented);
         }
 

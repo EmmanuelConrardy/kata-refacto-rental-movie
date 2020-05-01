@@ -2,19 +2,33 @@
 
 namespace MovieRental
 {
+    public enum PriceCode
+    {
+        REGULAR = 0,
+        NEW_RELEASE = 1,
+        CHILDRENS = 2
+    }
     public class Movie
     {
         public const int CHILDRENS = 2;
         public const int NEW_RELEASE = 1;
         public const int REGULAR = 0;
 
-        private String _title;
+        private string _title;
+        private PriceCode _priceCode_;
         private int _priceCode;
 
-        public Movie(String title, int priceCode)
+        public Movie(string title, int priceCode)
         {
             _title = title;
             _priceCode = priceCode;
+            _priceCode_ = (PriceCode)priceCode;
+        }
+
+        public Movie(string title, PriceCode priceCode)
+        {
+            _title = title;
+            _priceCode_ = priceCode;
         }
 
         public int getPriceCode()
@@ -22,11 +36,12 @@ namespace MovieRental
             return _priceCode;
         }
 
-        public void setPriceCode(int arg)
+        public PriceCode getPriceCode_()
         {
-            _priceCode = arg;
+            return _priceCode_;
         }
-        public String getTitle()
+
+        public string getTitle()
         {
             return _title;
         }
