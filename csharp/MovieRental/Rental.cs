@@ -16,9 +16,9 @@ namespace MovieRental
             _movie = movie;
             _daysRented = daysRented;
             //Factory
-            movieAmount.Add(Movie.REGULAR, SetAmountForRegular(0));
-            movieAmount.Add(Movie.NEW_RELEASE, SetAmountForNewRelease(0));
-            movieAmount.Add(Movie.CHILDRENS, SetAmountForChildren(0));
+            movieAmount.Add(Movie.REGULAR, SetAmountForRegular());
+            movieAmount.Add(Movie.NEW_RELEASE, SetAmountForNewRelease());
+            movieAmount.Add(Movie.CHILDRENS, SetAmountForChildren());
         }
 
         public int getDaysRented()
@@ -46,25 +46,25 @@ namespace MovieRental
         }
 
         //SRP
-        private double SetAmountForChildren(double thisAmount)
+        private double SetAmountForChildren()
         {
-            thisAmount += 1.5;
+            var thisAmount = 1.5;
             if (this.getDaysRented() > 3)
                 thisAmount += (this.getDaysRented() - 3) * 1.5;
             return thisAmount;
         }
 
         //SRP
-        private double SetAmountForNewRelease(double thisAmount)
+        private double SetAmountForNewRelease()
         {
-            thisAmount += this.getDaysRented() * 3;
+            var thisAmount = this.getDaysRented() * 3;
             return thisAmount;
         }
 
         //SRP
-        private double SetAmountForRegular(double thisAmount)
+        private double SetAmountForRegular()
         {
-            thisAmount += 2;
+            var thisAmount = 2d;
             if (this.getDaysRented() > 2)
                 thisAmount += (this.getDaysRented() - 2) * 1.5;
             return thisAmount;
