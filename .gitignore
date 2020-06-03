@@ -8,3 +8,4 @@
 /csharp/MovieRental/bin/
 /csharp/MovieRental/obj/
 /csharp/MovieRental/packages/
+*.ncrunchsolution.user
