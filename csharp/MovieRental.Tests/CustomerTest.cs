@@ -31,6 +31,7 @@ namespace MovieRental.Tests
         [TestMethod]
         public void StatementForRegularMovie()
         {
+            //Arrange
             var regularMovie = new Movie("Gone with the Wind", Movie.REGULAR);
             var rentalRegularMovie = new Rental(regularMovie, 3); // 3 day rental
             var sallie =
@@ -38,17 +39,21 @@ namespace MovieRental.Tests
                             .withName("Sallie")
                             .withRentals(rentalRegularMovie)
                             .build();
+            //Act
+            var statement = sallie.statement();
+            
+            //Assert
             var expected = "Rental Record for Sallie\n" +
                            "\tGone with the Wind\t3,5\n" +
                            "Amount owed is 3,5\n" +
                            "You earned 1 frequent renter points";
-            var statement = sallie.statement();
             Assert.AreEqual(expected, statement);
         }
 
         [TestMethod]
         public void StatementForNewReleaseMovie()
         {
+            //Arrange
             var newReleaseMovie = new Movie("Star Wars", Movie.NEW_RELEASE);
             var rentalNewReleaseMovie = new Rental(newReleaseMovie, 3); // 3 day rental
             var sallie =
@@ -56,17 +61,22 @@ namespace MovieRental.Tests
                             .withName("Sallie")
                             .withRentals(rentalNewReleaseMovie)
                             .build();
+            
+            //Act
+            var statement = sallie.statement();
+            
+            //Assert
             var expected = "Rental Record for Sallie\n" +
                            "\tStar Wars\t9\n" +
                            "Amount owed is 9\n" +
                            "You earned 2 frequent renter points";
-            var statement = sallie.statement();
             Assert.AreEqual(expected, statement);
         }
 
         [TestMethod]
         public void StatementForChildrensMovie()
         {
+            //Arrange
             var childrenMovie = new Movie("Madagascar", Movie.CHILDRENS);
             var rentalChildrenMovie = new Rental(childrenMovie, 3); // 3 day rental
             var customer2
@@ -74,17 +84,22 @@ namespace MovieRental.Tests
                     .withName("Sallie")
                     .withRentals(rentalChildrenMovie)
                     .build();
+
+            //Act
+            var statement = customer2.statement();
+            
+            //Assert
             var expected = "Rental Record for Sallie\n" +
                            "\tMadagascar\t1,5\n" +
                            "Amount owed is 1,5\n" +
                            "You earned 1 frequent renter points";
-            var statement = customer2.statement();
             Assert.AreEqual(expected, statement);
         }
 
         [TestMethod]
         public void StatementForManyMovies()
         {
+            //Arrange
             var movie = new Movie("Madagascar", Movie.CHILDRENS);
             var rentalChildrenMovie = new Rental(movie, 6); 
             var newRelease = new Movie("Star Wars", Movie.NEW_RELEASE);
@@ -98,13 +113,16 @@ namespace MovieRental.Tests
                     .withRentals(rentalChildrenMovie, rentalNewReleaseMovie, rentalRegularMovie)
                     .build();
 
+            //Act
+            var statement = david.statement();
+
+            //Assert
             var expected = "Rental Record for David\n" +
                            "\tMadagascar\t6\n" +
                            "\tStar Wars\t6\n" +
                            "\tGone with the Wind\t11\n" +
                            "Amount owed is 23\n" +
                            "You earned 4 frequent renter points";
-            var statement = david.statement();
             Assert.AreEqual(expected, statement);
         }
 
