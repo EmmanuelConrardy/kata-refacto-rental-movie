@@ -33,13 +33,15 @@ namespace MovieRental
             foreach (Rental rental in _rentals)
             {
                 result += "\t" + rental.getTitle() + "\t" + rental.GetAmount() + "\n";
+               
                 frequentRenterPoints += rental.FrequentRenterPoints();
+                
                 totalAmount += rental.GetAmount();
             }
 
             // add footer lines
-            result += "Amount owed is " + totalAmount.ToString() + "\n";
-            result += "You earned " + frequentRenterPoints.ToString() + " frequent renter points";
+            result += "Amount owed is " + totalAmount + "\n";
+            result += "You earned " + frequentRenterPoints + " frequent renter points";
 
             return result;
         }
