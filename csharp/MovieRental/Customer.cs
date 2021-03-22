@@ -32,16 +32,11 @@ namespace MovieRental
 
             foreach (Rental rental in _rentals)
             {
-                double amount = 0;
-
-                //determine amounts for each line
-                //Code smell : Switch Statements
+                //Code smell : Inappropriate Intimacy
                 var priceCode = rental.getPriceCode();
                 var daysRented = rental.getDaysRented();
-
-                amount = GetAmount(priceCode, daysRented);
-
-                // add frequent renter points
+                //Code smell : Feature Envy
+                var amount = GetAmount(priceCode, daysRented);
                 frequentRenterPoints += FrequentRenterPoints(priceCode, daysRented);
 
                 // show figures for this rental
@@ -67,6 +62,7 @@ namespace MovieRental
 
         private double GetAmount(int priceCode, int daysRented)
         {
+            //Code smell : Switch Statements
             double amount = 0;
             switch (priceCode)
             {
