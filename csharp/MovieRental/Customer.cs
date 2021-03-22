@@ -39,24 +39,7 @@ namespace MovieRental
                 var priceCode = rental.getPriceCode();
                 var daysRented = rental.getDaysRented();
 
-                switch (priceCode)
-                {
-                    case Movie.REGULAR:
-                        amount += 2;
-                        if (daysRented > 2)
-                            amount += (daysRented - 2) * 1.5;
-                        if (daysRented > 10)
-                            amount -= (daysRented - 10) * 0.5;
-                        break;
-                    case Movie.NEW_RELEASE:
-                        amount += daysRented * 3;
-                        break;
-                    case Movie.CHILDRENS:
-                        amount += 1.5;
-                        if (daysRented > 3)
-                            amount += (daysRented - 3) * 1.5;
-                        break;
-                }
+                amount = GetAmount(priceCode, daysRented);
 
                 // add frequent renter points
                 frequentRenterPoints++;
@@ -74,6 +57,31 @@ namespace MovieRental
             result += "You earned " + frequentRenterPoints.ToString() + " frequent renter points";
 
             return result;
+        }
+
+        private double GetAmount(int priceCode, int daysRented)
+        {
+            double amount = 0;
+            switch (priceCode)
+            {
+                case Movie.REGULAR:
+                    amount += 2;
+                    if (daysRented > 2)
+                        amount += (daysRented - 2) * 1.5;
+                    if (daysRented > 10)
+                        amount -= (daysRented - 10) * 0.5;
+                    break;
+                case Movie.NEW_RELEASE:
+                    amount += daysRented * 3;
+                    break;
+                case Movie.CHILDRENS:
+                    amount += 1.5;
+                    if (daysRented > 3)
+                        amount += (daysRented - 3) * 1.5;
+                    break;
+            }
+
+            return amount;
         }
     }
 
