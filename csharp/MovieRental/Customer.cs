@@ -37,7 +37,8 @@ namespace MovieRental
                 //determine amounts for each line
                 //Code smell : Message Chains
                 //Code smell : Switch Statements
-                switch (rental.getMovie().getPriceCode())
+                var priceCode = rental.getMovie().getPriceCode();
+                switch (priceCode)
                 {
                     case Movie.REGULAR:
                         amount += 2;
@@ -59,7 +60,7 @@ namespace MovieRental
                 // add frequent renter points
                 frequentRenterPoints++;
                 // add bonus for a two day new release rental
-                if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE) && rental.getDaysRented() > 1)
+                if ((priceCode == Movie.NEW_RELEASE) && rental.getDaysRented() > 1)
                     frequentRenterPoints++;
 
                 // show figures for this rental
