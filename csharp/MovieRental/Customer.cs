@@ -37,29 +37,31 @@ namespace MovieRental
                 //determine amounts for each line
                 //Code smell : Switch Statements
                 var priceCode = rental.getPriceCode();
+                var daysRented = rental.getDaysRented();
+
                 switch (priceCode)
                 {
                     case Movie.REGULAR:
                         amount += 2;
-                        if (rental.getDaysRented() > 2)
-                            amount += (rental.getDaysRented() - 2) * 1.5;
-                        if (rental.getDaysRented() > 10)
-                            amount -= (rental.getDaysRented() - 10) * 0.5;
+                        if (daysRented > 2)
+                            amount += (daysRented - 2) * 1.5;
+                        if (daysRented > 10)
+                            amount -= (daysRented - 10) * 0.5;
                         break;
                     case Movie.NEW_RELEASE:
-                        amount += rental.getDaysRented() * 3;
+                        amount += daysRented * 3;
                         break;
                     case Movie.CHILDRENS:
                         amount += 1.5;
-                        if (rental.getDaysRented() > 3)
-                            amount += (rental.getDaysRented() - 3) * 1.5;
+                        if (daysRented > 3)
+                            amount += (daysRented - 3) * 1.5;
                         break;
                 }
 
                 // add frequent renter points
                 frequentRenterPoints++;
                 // add bonus for a two day new release rental
-                if ((priceCode == Movie.NEW_RELEASE) && rental.getDaysRented() > 1)
+                if ((priceCode == Movie.NEW_RELEASE) && daysRented > 1)
                     frequentRenterPoints++;
 
                 // show figures for this rental
