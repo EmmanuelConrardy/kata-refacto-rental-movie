@@ -40,6 +40,8 @@ namespace MovieRental
                         thisAmount += 2;
                         if (each.getDaysRented() > 2)
                             thisAmount += (each.getDaysRented() - 2) * 1.5;
+                        if (each.getDaysRented() > 10)
+                            thisAmount -= (each.getDaysRented() - 10) * 0.5;
                         break;
                     case Movie.NEW_RELEASE:
                         thisAmount += each.getDaysRented() * 3;

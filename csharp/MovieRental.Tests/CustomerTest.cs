@@ -106,6 +106,28 @@ namespace MovieRental.Tests
         }
 
         //TODO make test for price breaks in code.
+        [TestMethod]
+        public void StatementForPriceBreakOver10dayRentedRegular()
+        {
+            //Arrange
+            var regularMovie = new Movie("Gone with the Wind", Movie.REGULAR);
+            Rental rental = new Rental(regularMovie, 12); 
+            Customer Sallie =
+                new CustomerBuilder()
+                    .withName("Sallie")
+                    .withRentals(rental)
+                    .build();
+            
+            //Act
+            string statement = Sallie.statement();
+
+            //Assert
+            string expected = "Rental Record for Sallie\n" +
+                              "\tGone with the Wind\t16\n" +
+                              "Amount owed is 16\n" +
+                              "You earned 1 frequent renter points";
+            Assert.AreEqual(expected, statement);
+        }
     }
 
 }
