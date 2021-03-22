@@ -32,12 +32,9 @@ namespace MovieRental
 
             foreach (Rental rental in _rentals)
             {
-                //Code smell : Inappropriate Intimacy
-                var priceCode = rental.getPriceCode();
-                var daysRented = rental.getDaysRented();
                 //Code smell : Feature Envy
-                var amount = rental.GetAmount(priceCode, daysRented);
-                frequentRenterPoints += rental.FrequentRenterPoints(priceCode, daysRented);
+                var amount = rental.GetAmount();
+                frequentRenterPoints += rental.FrequentRenterPoints();
 
                 // show figures for this rental
                 result += "\t" + rental.getTitle() + "\t" + amount.ToString() + "\n";
