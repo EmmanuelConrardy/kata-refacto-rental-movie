@@ -25,5 +25,10 @@
         {
             return _movie.getPriceCode();
         }
+
+        public string getTitle()
+        {
+            return _movie.getTitle();
+        }
     }
 }

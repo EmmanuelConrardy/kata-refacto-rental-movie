@@ -64,7 +64,7 @@ namespace MovieRental
                     frequentRenterPoints++;
 
                 // show figures for this rental
-                result += "\t" + rental.getMovie().getTitle() + "\t" + amount.ToString() + "\n";
+                result += "\t" + rental.getTitle() + "\t" + amount.ToString() + "\n";
                 totalAmount += amount;
             }
 
