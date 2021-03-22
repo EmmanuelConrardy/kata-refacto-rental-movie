@@ -17,7 +17,7 @@ namespace MovieRental.Tests
         {
             var customer = new CustomerBuilder().withName("Julia").build();
             var movie = new Movie("Gone with the Wind", Movie.REGULAR);
-            var rental1 = new Rental(movie, 3); // 3 day rental
+            var rental1 = new Rental(movie, 3); 
             customer.addRental(rental1);
         }
 
@@ -33,7 +33,7 @@ namespace MovieRental.Tests
         {
             //Arrange
             var regularMovie = new Movie("Gone with the Wind", Movie.REGULAR);
-            var rentalRegularMovie = new Rental(regularMovie, 3); // 3 day rental
+            var rentalRegularMovie = new Rental(regularMovie, 3);
             var sallie =
                     new CustomerBuilder()
                             .withName("Sallie")
@@ -55,7 +55,7 @@ namespace MovieRental.Tests
         {
             //Arrange
             var newReleaseMovie = new Movie("Star Wars", Movie.NEW_RELEASE);
-            var rentalNewReleaseMovie = new Rental(newReleaseMovie, 3); // 3 day rental
+            var rentalNewReleaseMovie = new Rental(newReleaseMovie, 3); 
             var sallie =
                     new CustomerBuilder()
                             .withName("Sallie")
@@ -78,7 +78,7 @@ namespace MovieRental.Tests
         {
             //Arrange
             var childrenMovie = new Movie("Madagascar", Movie.CHILDRENS);
-            var rentalChildrenMovie = new Rental(childrenMovie, 3); // 3 day rental
+            var rentalChildrenMovie = new Rental(childrenMovie, 3); 
             var customer2
                     = new CustomerBuilder()
                     .withName("Sallie")
@@ -126,7 +126,6 @@ namespace MovieRental.Tests
             Assert.AreEqual(expected, statement);
         }
 
-        //TODO make test for price breaks in code.
         [TestMethod]
         public void StatementForPriceBreakOver10dayRentedRegular()
         {
