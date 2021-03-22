@@ -16,11 +16,6 @@
             return _daysRented;
         }
 
-        public Movie getMovie()
-        {
-            return _movie;
-        }
-
         public int getPriceCode()
         {
             return _movie.getPriceCode();
