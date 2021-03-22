@@ -23,6 +23,7 @@ namespace MovieRental
             return _name;
         }
 
+        //Code smell : Long method
         public string statement()
         {
             double totalAmount = 0;
@@ -34,6 +35,8 @@ namespace MovieRental
                 double thisAmount = 0;
 
                 //determine amounts for each line
+                //Code smell : Message Chains
+                //Code smell : Switch Statements
                 switch (each.getMovie().getPriceCode())
                 {
                     case Movie.REGULAR:
