@@ -32,13 +32,9 @@ namespace MovieRental
 
             foreach (Rental rental in _rentals)
             {
-                //Code smell : Feature Envy
-                var amount = rental.GetAmount();
+                result += "\t" + rental.getTitle() + "\t" + rental.GetAmount() + "\n";
                 frequentRenterPoints += rental.FrequentRenterPoints();
-
-                // show figures for this rental
-                result += "\t" + rental.getTitle() + "\t" + amount.ToString() + "\n";
-                totalAmount += amount;
+                totalAmount += rental.GetAmount();
             }
 
             // add footer lines
