@@ -20,6 +20,10 @@
         {
             return _movie;
         }
-    }
 
+        public int getPriceCode()
+        {
+            return _movie.getPriceCode();
+        }
+    }
 }

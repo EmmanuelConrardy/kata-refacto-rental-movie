@@ -37,7 +37,7 @@ namespace MovieRental
                 //determine amounts for each line
                 //Code smell : Message Chains
                 //Code smell : Switch Statements
-                var priceCode = rental.getMovie().getPriceCode();
+                var priceCode = rental.getPriceCode();
                 switch (priceCode)
                 {
                     case Movie.REGULAR:
