@@ -9,3 +9,6 @@
 /csharp/MovieRental/obj/
 /csharp/MovieRental/packages/
 *.ncrunchsolution.user
+csharp/MovieRental/_NCrunch_MovieRental
+csharp/MovieRental/MovieRental.sln.DotSettings.user
+csharp/MovieRental/MovieRental.v3.ncrunchsolution
