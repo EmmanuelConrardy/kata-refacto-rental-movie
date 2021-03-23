@@ -14,6 +14,15 @@ namespace MovieRental
         }
 
         public abstract double GetAmount();
+
+        public virtual int FrequentRenterPoints()
+        {
+            var frequentRenterPoints = 1;
+            // add bonus for a two day new release rental
+            if ((_movie.getPriceCode() == Movie.NEW_RELEASE) && _daysRented > 1)
+                frequentRenterPoints++;
+            return frequentRenterPoints;
+        }
     }
 
     public class RentalChildren : RentalBase
@@ -79,11 +88,9 @@ namespace MovieRental
 
         public int FrequentRenterPoints()
         {
-            var frequentRenterPoints = 1;
-            // add bonus for a two day new release rental
-            if ((_movie.getPriceCode() == Movie.NEW_RELEASE) && _daysRented > 1)
-                frequentRenterPoints++;
-            return frequentRenterPoints;
+            var rental = SelectRental();
+            return rental.FrequentRenterPoints();
+          
         }
 
         public double GetAmount()
