@@ -8,17 +8,13 @@ namespace MovieRental.Tests
 
         public static readonly String NAME = "Roberts";
 
-    private String name = NAME;
-        private List<Rental> rentals = new List<Rental>();
+        private String name = NAME;
         private List<RentalBase> rentalsBase = new List<RentalBase>();
 
         public Customer build()
         {
             Customer result = new Customer(name);
-            foreach (Rental rental in rentals)
-            {
-                result.addRental(rental);
-            }
+
             foreach (var rental in rentalsBase)
             {
                 result.addRental(rental);
@@ -29,12 +25,6 @@ namespace MovieRental.Tests
         public CustomerBuilder withName(String name)
         {
             this.name = name;
-            return this;
-        }
-
-        public CustomerBuilder withRentals(params Rental[] rentals)
-        {
-            this.rentals.AddRange(rentals);
             return this;
         }
 
