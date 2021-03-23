@@ -1,5 +1,33 @@
 ﻿namespace MovieRental
 {
+    public abstract class RentalBase
+    {
+        protected Movie _movie;
+        protected int _daysRented;
+
+        public RentalBase(Movie movie, int daysRented)
+        {
+            _movie = movie;
+            _daysRented = daysRented;
+        }
+
+        public abstract double GetAmount();
+    }
+
+    public class RentalChildren : RentalBase
+    {
+        public RentalChildren(Movie movie, int daysRented) : base(movie, daysRented)
+        {
+        }
+
+        public override double GetAmount()
+        {
+            var amount = 1.5;
+            if (_daysRented > 3)
+                amount += (_daysRented - 3) * 1.5;
+            return amount;
+        }
+    }
     public class Rental
     {
         private Movie _movie;
@@ -38,18 +66,10 @@
                     amount = CalcAmountNewRelease(amount);
                     break;
                 case Movie.CHILDRENS:
-                    amount = CalcAmountChildren(amount);
+                    amount =  new RentalChildren(_movie,_daysRented).GetAmount();
                     break;
             }
 
-            return amount;
-        }
-
-        private double CalcAmountChildren(double amount)
-        {
-            amount += 1.5;
-            if (_daysRented > 3)
-                amount += (_daysRented - 3) * 1.5;
             return amount;
         }
 
