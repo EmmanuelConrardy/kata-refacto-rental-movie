@@ -23,7 +23,6 @@ namespace MovieRental
             return _name;
         }
 
-        //Code smell : Long method
         public string statement()
         {
             double totalAmount = 0;
