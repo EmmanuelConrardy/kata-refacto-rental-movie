@@ -1,28 +1,26 @@
-﻿using System;
-
-namespace MovieRental
+﻿namespace MovieRental
 {
     public class Movie
     {
-        public const int CHILDRENS = 2;
-        public const int NEW_RELEASE = 1;
-        public const int REGULAR = 0;
+        public const int Children = 2;
+        public const int NewRelease = 1;
+        public const int Regular = 0;
 
-        private String _title;
-        private int _priceCode;
+        private readonly string _title;
+        private readonly int _priceCode;
 
-        public Movie(String title, int priceCode)
+        public Movie(string title, int priceCode)
         {
             _title = title;
             _priceCode = priceCode;
         }
 
-        public int getPriceCode()
+        public int GetPriceCode()
         {
             return _priceCode;
         }
 
-        public String getTitle()
+        public string GetTitle()
         {
             return _title;
         }

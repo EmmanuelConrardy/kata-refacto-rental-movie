@@ -4,29 +4,28 @@ namespace MovieRental
 {
     public class Customer
     {
-
-        private string _name;
-        private List<RentalBase> _rentalsBase = new List<RentalBase>();
+        private readonly string _name;
+        private readonly List<RentalBase> _rentalsBase = new List<RentalBase>();
 
         public Customer(string name)
         {
             _name = name;
         }
 
-        public void addRental(RentalBase arg)
+        public void AddRental(RentalBase arg)
         {
             _rentalsBase.Add(arg);
         }
 
-        public string getName()
+        public string GetName()
         {
             return _name;
         }
 
-        public string statement()
+        public string Statement()
         {
             double totalAmount = 0;
-            string result = "Rental Record for " + getName() + "\n";
+            string result = "Rental Record for " + GetName() + "\n";
             var frequentRenterPoints = 0;
 
             foreach (var rental in _rentalsBase)
@@ -45,5 +44,4 @@ namespace MovieRental
             return result;
         }
     }
-
 }

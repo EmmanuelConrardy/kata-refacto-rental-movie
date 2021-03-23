@@ -8,39 +8,39 @@ namespace MovieRental.Tests
         [TestMethod]
         public void TestCustomer()
         {
-            var c = new CustomerBuilder().build();
+            var c = new CustomerBuilder().Build();
             Assert.IsNotNull(c);
         }
 
         [TestMethod]
         public void TestAddRentalBaseRegular()
         {
-            var customer = new CustomerBuilder().withName("Julia").build();
-            var movie = new Movie("Gone with the Wind", Movie.REGULAR);
+            var customer = new CustomerBuilder().WithName("Julia").Build();
+            var movie = new Movie("Gone with the Wind", Movie.Regular);
             var rental1 = new RentalRegular(movie, 3);
-            customer.addRental(rental1);
+            customer.AddRental(rental1);
         }
 
         [TestMethod]
         public void TestGetName()
         {
             var c = new Customer("David");
-            Assert.AreEqual("David", c.getName());
+            Assert.AreEqual("David", c.GetName());
         }
 
         [TestMethod]
         public void StatementForRegularBaseMovie()
         {
             //Arrange
-            var regularMovie = new Movie("Gone with the Wind", Movie.REGULAR);
+            var regularMovie = new Movie("Gone with the Wind", Movie.Regular);
             var rentalRegularMovie = new RentalRegular(regularMovie, 3);
             var sallie =
                 new CustomerBuilder()
-                    .withName("Sallie")
-                    .withRentals(rentalRegularMovie)
-                    .build();
+                    .WithName("Sallie")
+                    .WithRentals(rentalRegularMovie)
+                    .Build();
             //Act
-            var statement = sallie.statement();
+            var statement = sallie.Statement();
 
             //Assert
             var expected = "Rental Record for Sallie\n" +
@@ -54,16 +54,16 @@ namespace MovieRental.Tests
         public void StatementForNewReleaseBaseMovie()
         {
             //Arrange
-            var newReleaseMovie = new Movie("Star Wars", Movie.NEW_RELEASE);
+            var newReleaseMovie = new Movie("Star Wars", Movie.NewRelease);
             var rentalNewReleaseMovie = new RentalNewRelease(newReleaseMovie, 3);
             var sallie =
                 new CustomerBuilder()
-                    .withName("Sallie")
-                    .withRentals(rentalNewReleaseMovie)
-                    .build();
+                    .WithName("Sallie")
+                    .WithRentals(rentalNewReleaseMovie)
+                    .Build();
 
             //Act
-            var statement = sallie.statement();
+            var statement = sallie.Statement();
 
             //Assert
             var expected = "Rental Record for Sallie\n" +
@@ -74,19 +74,19 @@ namespace MovieRental.Tests
         }
 
         [TestMethod]
-        public void StatementForChildrensBaseMovie()
+        public void StatementForChildrenBaseMovie()
         {
             //Arrange
-            var childrenMovie = new Movie("Madagascar", Movie.CHILDRENS);
+            var childrenMovie = new Movie("Madagascar", Movie.Children);
             var rentalChildrenMovie = new RentalChildren(childrenMovie, 3);
             var customer2
                 = new CustomerBuilder()
-                    .withName("Sallie")
-                    .withRentals(rentalChildrenMovie)
-                    .build();
+                    .WithName("Sallie")
+                    .WithRentals(rentalChildrenMovie)
+                    .Build();
 
             //Act
-            var statement = customer2.statement();
+            var statement = customer2.Statement();
 
             //Assert
             var expected = "Rental Record for Sallie\n" +
@@ -100,21 +100,21 @@ namespace MovieRental.Tests
         public void StatementForManyMoviesBase()
         {
             //Arrange
-            var movie = new Movie("Madagascar", Movie.CHILDRENS);
+            var movie = new Movie("Madagascar", Movie.Children);
             var rentalChildrenMovie = new RentalChildren(movie, 6);
-            var newRelease = new Movie("Star Wars", Movie.NEW_RELEASE);
+            var newRelease = new Movie("Star Wars", Movie.NewRelease);
             var rentalNewReleaseMovie = new RentalNewRelease(newRelease, 2);
-            var regular = new Movie("Gone with the Wind", Movie.REGULAR);
+            var regular = new Movie("Gone with the Wind", Movie.Regular);
             var rentalRegularMovie = new RentalRegular(regular, 8);
 
             var david
                 = new CustomerBuilder()
-                    .withName("David")
-                    .withRentals(rentalChildrenMovie, rentalNewReleaseMovie, rentalRegularMovie)
-                    .build();
+                    .WithName("David")
+                    .WithRentals(rentalChildrenMovie, rentalNewReleaseMovie, rentalRegularMovie)
+                    .Build();
 
             //Act
-            var statement = david.statement();
+            var statement = david.Statement();
 
             //Assert
             var expected = "Rental Record for David\n" +
@@ -130,16 +130,16 @@ namespace MovieRental.Tests
         public void StatementForPriceBreakOver10dayRentedRegularBase()
         {
             //Arrange
-            var regularMovie = new Movie("Gone with the Wind", Movie.REGULAR);
+            var regularMovie = new Movie("Gone with the Wind", Movie.Regular);
             var rentalRegularMovie = new RentalRegular(regularMovie, 12);
             var sallie =
                 new CustomerBuilder()
-                    .withName("Sallie")
-                    .withRentals(rentalRegularMovie)
-                    .build();
+                    .WithName("Sallie")
+                    .WithRentals(rentalRegularMovie)
+                    .Build();
 
             //Act
-            var statement = sallie.statement();
+            var statement = sallie.Statement();
 
             //Assert
             var expected = "Rental Record for Sallie\n" +
@@ -149,5 +149,4 @@ namespace MovieRental.Tests
             Assert.AreEqual(expected, statement);
         }
     }
-
 }

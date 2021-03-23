@@ -1,38 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MovieRental.Tests
 {
     public class CustomerBuilder
     {
+        public static readonly string Name = "Roberts";
 
-        public static readonly String NAME = "Roberts";
+        private string _name = Name;
+        private readonly List<RentalBase> _rentalsBase = new List<RentalBase>();
 
-        private String name = NAME;
-        private List<RentalBase> rentalsBase = new List<RentalBase>();
-
-        public Customer build()
+        public Customer Build()
         {
-            Customer result = new Customer(name);
+            Customer result = new Customer(_name);
 
-            foreach (var rental in rentalsBase)
+            foreach (var rental in _rentalsBase)
             {
-                result.addRental(rental);
+                result.AddRental(rental);
             }
             return result;
         }
 
-        public CustomerBuilder withName(String name)
+        public CustomerBuilder WithName(string name)
         {
-            this.name = name;
+            this._name = name;
             return this;
         }
 
-        public CustomerBuilder withRentals(params RentalBase[] rentals)
+        public CustomerBuilder WithRentals(params RentalBase[] rentals)
         {
-            this.rentalsBase.AddRange(rentals);
+            this._rentalsBase.AddRange(rentals);
             return this;
         }
     }
-
 }

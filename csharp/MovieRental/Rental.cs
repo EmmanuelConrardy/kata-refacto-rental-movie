@@ -1,16 +1,14 @@
-﻿using System;
-
-namespace MovieRental
+﻿namespace MovieRental
 {
     public abstract class RentalBase
     {
-        protected Movie _movie;
-        protected int _daysRented;
+        protected Movie Movie;
+        protected int DaysRented;
 
         protected RentalBase(Movie movie, int daysRented)
         {
-            _movie = movie;
-            _daysRented = daysRented;
+            Movie = movie;
+            DaysRented = daysRented;
         }
 
         public abstract double GetAmount();
@@ -19,14 +17,14 @@ namespace MovieRental
         {
             var frequentRenterPoints = 1;
             // add bonus for a two day new release rental
-            if ((_movie.getPriceCode() == Movie.NEW_RELEASE) && _daysRented > 1)
+            if ((Movie.GetPriceCode() == Movie.NewRelease) && DaysRented > 1)
                 frequentRenterPoints++;
             return frequentRenterPoints;
         }
 
         public string GetMovieTitle()
         {
-            return _movie.getTitle();
+            return Movie.GetTitle();
         }
     }
 
@@ -39,8 +37,8 @@ namespace MovieRental
         public override double GetAmount()
         {
             var amount = 1.5;
-            if (_daysRented > 3)
-                amount += (_daysRented - 3) * 1.5;
+            if (DaysRented > 3)
+                amount += (DaysRented - 3) * 1.5;
             return amount;
         }
     }
@@ -53,7 +51,7 @@ namespace MovieRental
 
         public override double GetAmount()
         {
-            var amount = _daysRented * 3;
+            var amount = DaysRented * 3;
             return amount;
         }
     }
@@ -67,10 +65,10 @@ namespace MovieRental
         public override double GetAmount()
         {
             var amount = 2.0;
-            if (_daysRented > 2)
-                amount += (_daysRented - 2) * 1.5;
-            if (_daysRented > 10)
-                amount -= (_daysRented - 10) * 0.5;
+            if (DaysRented > 2)
+                amount += (DaysRented - 2) * 1.5;
+            if (DaysRented > 10)
+                amount -= (DaysRented - 10) * 0.5;
             return amount;
         }
     }
