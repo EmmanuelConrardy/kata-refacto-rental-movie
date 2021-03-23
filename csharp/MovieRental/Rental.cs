@@ -1,4 +1,6 @@
-﻿namespace MovieRental
+﻿using System;
+
+namespace MovieRental
 {
     public abstract class RentalBase
     {
@@ -87,21 +89,26 @@
         public double GetAmount()
         {
             //Code smell : Switch Statements
-            double amount = 0;
+            var rental = SelectRental();
+            return rental.GetAmount();
+        }
+
+        private RentalBase SelectRental()
+        {
             switch (_movie.getPriceCode())
             {
                 case Movie.REGULAR:
-                    amount = new RentalRegular(_movie,_daysRented).GetAmount();
+                    return new RentalRegular(_movie, _daysRented);
                     break;
                 case Movie.NEW_RELEASE:
-                    amount = new RentalNewRelease(_movie, _daysRented).GetAmount();
+                    return new RentalNewRelease(_movie, _daysRented);
                     break;
                 case Movie.CHILDRENS:
-                    amount =  new RentalChildren(_movie,_daysRented).GetAmount();
+                    return new RentalChildren(_movie, _daysRented);
                     break;
             }
 
-            return amount;
+            throw new ArgumentException();
         }
     }
 }
