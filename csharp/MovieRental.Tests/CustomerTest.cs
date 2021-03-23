@@ -151,6 +151,29 @@ namespace MovieRental.Tests
         }
 
         [TestMethod]
+        public void StatementForChildrensBaseMovie()
+        {
+            //Arrange
+            var childrenMovie = new Movie("Madagascar", Movie.CHILDRENS);
+            var rentalChildrenMovie = new RentalChildren(childrenMovie, 3);
+            var customer2
+                = new CustomerBuilder()
+                    .withName("Sallie")
+                    .withRentals(rentalChildrenMovie)
+                    .build();
+
+            //Act
+            var statement = customer2.statement();
+
+            //Assert
+            var expected = "Rental Record for Sallie\n" +
+                           "\tMadagascar\t1,5\n" +
+                           "Amount owed is 1,5\n" +
+                           "You earned 1 frequent renter points";
+            Assert.AreEqual(expected, statement);
+        }
+
+        [TestMethod]
         public void StatementForManyMovies()
         {
             //Arrange
