@@ -23,6 +23,11 @@ namespace MovieRental
                 frequentRenterPoints++;
             return frequentRenterPoints;
         }
+
+        public string GetMovieTitle()
+        {
+            return _movie.getTitle();
+        }
     }
 
     public class RentalChildren : RentalBase
@@ -83,7 +88,8 @@ namespace MovieRental
 
         public string getTitle()
         {
-            return _movie.getTitle();
+            var rental = SelectRental();
+            return rental.GetMovieTitle();
         }
 
         public int FrequentRenterPoints()
