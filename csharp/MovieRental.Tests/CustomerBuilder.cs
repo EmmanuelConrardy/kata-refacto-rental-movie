@@ -38,7 +38,7 @@ namespace MovieRental.Tests
             return this;
         }
 
-        public CustomerBuilder withRentalsBase(params RentalBase[] rentals)
+        public CustomerBuilder withRentals(params RentalBase[] rentals)
         {
             this.rentalsBase.AddRange(rentals);
             return this;

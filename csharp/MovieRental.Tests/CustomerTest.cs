@@ -46,7 +46,7 @@ namespace MovieRental.Tests
             var sallie =
                 new CustomerBuilder()
                     .withName("Sallie")
-                    .withRentalsBase(rentalRegularMovie)
+                    .withRentals(rentalRegularMovie)
                     .build();
             //Act
             var statement = sallie.statement();
@@ -96,6 +96,29 @@ namespace MovieRental.Tests
             //Act
             var statement = sallie.statement();
             
+            //Assert
+            var expected = "Rental Record for Sallie\n" +
+                           "\tStar Wars\t9\n" +
+                           "Amount owed is 9\n" +
+                           "You earned 2 frequent renter points";
+            Assert.AreEqual(expected, statement);
+        }
+
+        [TestMethod]
+        public void StatementForNewReleaseBaseMovie()
+        {
+            //Arrange
+            var newReleaseMovie = new Movie("Star Wars", Movie.NEW_RELEASE);
+            var rentalNewReleaseMovie = new RentalNewRelease(newReleaseMovie, 3);
+            var sallie =
+                new CustomerBuilder()
+                    .withName("Sallie")
+                    .withRentals(rentalNewReleaseMovie)
+                    .build();
+
+            //Act
+            var statement = sallie.statement();
+
             //Assert
             var expected = "Rental Record for Sallie\n" +
                            "\tStar Wars\t9\n" +
