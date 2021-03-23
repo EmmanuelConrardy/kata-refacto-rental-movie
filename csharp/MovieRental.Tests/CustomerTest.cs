@@ -204,6 +204,36 @@ namespace MovieRental.Tests
         }
 
         [TestMethod]
+        public void StatementForManyMoviesBase()
+        {
+            //Arrange
+            var movie = new Movie("Madagascar", Movie.CHILDRENS);
+            var rentalChildrenMovie = new RentalChildren(movie, 6);
+            var newRelease = new Movie("Star Wars", Movie.NEW_RELEASE);
+            var rentalNewReleaseMovie = new RentalNewRelease(newRelease, 2);
+            var regular = new Movie("Gone with the Wind", Movie.REGULAR);
+            var rentalRegularMovie = new RentalRegular(regular, 8);
+
+            var david
+                = new CustomerBuilder()
+                    .withName("David")
+                    .withRentals(rentalChildrenMovie, rentalNewReleaseMovie, rentalRegularMovie)
+                    .build();
+
+            //Act
+            var statement = david.statement();
+
+            //Assert
+            var expected = "Rental Record for David\n" +
+                           "\tMadagascar\t6\n" +
+                           "\tStar Wars\t6\n" +
+                           "\tGone with the Wind\t11\n" +
+                           "Amount owed is 23\n" +
+                           "You earned 4 frequent renter points";
+            Assert.AreEqual(expected, statement);
+        }
+
+        [TestMethod]
         public void StatementForPriceBreakOver10dayRentedRegular()
         {
             //Arrange
