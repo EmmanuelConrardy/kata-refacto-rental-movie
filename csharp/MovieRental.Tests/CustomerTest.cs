@@ -255,6 +255,29 @@ namespace MovieRental.Tests
                            "You earned 1 frequent renter points";
             Assert.AreEqual(expected, statement);
         }
+
+        [TestMethod]
+        public void StatementForPriceBreakOver10dayRentedRegularBase()
+        {
+            //Arrange
+            var regularMovie = new Movie("Gone with the Wind", Movie.REGULAR);
+            var rentalRegularMovie = new RentalRegular(regularMovie, 12);
+            var sallie =
+                new CustomerBuilder()
+                    .withName("Sallie")
+                    .withRentals(rentalRegularMovie)
+                    .build();
+
+            //Act
+            var statement = sallie.statement();
+
+            //Assert
+            var expected = "Rental Record for Sallie\n" +
+                           "\tGone with the Wind\t16\n" +
+                           "Amount owed is 16\n" +
+                           "You earned 1 frequent renter points";
+            Assert.AreEqual(expected, statement);
+        }
     }
 
 }
