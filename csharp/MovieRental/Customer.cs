@@ -7,6 +7,7 @@ namespace MovieRental
 
         private string _name;
         private List<Rental> _rentals = new List<Rental>();
+        private List<RentalBase> _rentalsBase = new List<RentalBase>();
 
         public Customer(string name)
         {
@@ -16,6 +17,11 @@ namespace MovieRental
         public void addRental(Rental arg)
         {
             _rentals.Add(arg);
+        }
+
+        public void addRental(RentalBase arg)
+        {
+            _rentalsBase.Add(arg);
         }
 
         public string getName()

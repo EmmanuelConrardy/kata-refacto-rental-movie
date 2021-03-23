@@ -22,6 +22,15 @@ namespace MovieRental.Tests
         }
 
         [TestMethod]
+        public void TestAddRentalBaseRegular()
+        {
+            var customer = new CustomerBuilder().withName("Julia").build();
+            var movie = new Movie("Gone with the Wind", Movie.REGULAR);
+            var rental1 = new RentalRegular(movie, 3);
+            customer.addRental(rental1);
+        }
+
+        [TestMethod]
         public void TestGetName()
         {
             var c = new Customer("David");
