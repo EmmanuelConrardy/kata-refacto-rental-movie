@@ -38,6 +38,28 @@ namespace MovieRental.Tests
         }
 
         [TestMethod]
+        public void StatementForRegularBaseMovie()
+        {
+            //Arrange
+            var regularMovie = new Movie("Gone with the Wind", Movie.REGULAR);
+            var rentalRegularMovie = new RentalRegular(regularMovie, 3);
+            var sallie =
+                new CustomerBuilder()
+                    .withName("Sallie")
+                    .withRentalsBase(rentalRegularMovie)
+                    .build();
+            //Act
+            var statement = sallie.statement();
+
+            //Assert
+            var expected = "Rental Record for Sallie\n" +
+                           "\tGone with the Wind\t3,5\n" +
+                           "Amount owed is 3,5\n" +
+                           "You earned 1 frequent renter points";
+            Assert.AreEqual(expected, statement);
+        }
+
+        [TestMethod]
         public void StatementForRegularMovie()
         {
             //Arrange

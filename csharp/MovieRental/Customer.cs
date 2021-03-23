@@ -44,6 +44,15 @@ namespace MovieRental
                 totalAmount += rental.GetAmount();
             }
 
+            foreach (var rental in _rentalsBase)
+            {
+                result += "\t" + rental.GetMovieTitle() + "\t" + rental.GetAmount() + "\n";
+
+                frequentRenterPoints += rental.FrequentRenterPoints();
+
+                totalAmount += rental.GetAmount();
+            }
+
             // add footer lines
             result += "Amount owed is " + totalAmount + "\n";
             result += "You earned " + frequentRenterPoints + " frequent renter points";

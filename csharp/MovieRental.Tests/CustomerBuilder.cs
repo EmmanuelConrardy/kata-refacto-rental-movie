@@ -10,11 +10,16 @@ namespace MovieRental.Tests
 
     private String name = NAME;
         private List<Rental> rentals = new List<Rental>();
+        private List<RentalBase> rentalsBase = new List<RentalBase>();
 
         public Customer build()
         {
             Customer result = new Customer(name);
             foreach (Rental rental in rentals)
+            {
+                result.addRental(rental);
+            }
+            foreach (var rental in rentalsBase)
             {
                 result.addRental(rental);
             }
@@ -30,6 +35,12 @@ namespace MovieRental.Tests
         public CustomerBuilder withRentals(params Rental[] rentals)
         {
             this.rentals.AddRange(rentals);
+            return this;
+        }
+
+        public CustomerBuilder withRentalsBase(params RentalBase[] rentals)
+        {
+            this.rentalsBase.AddRange(rentals);
             return this;
         }
     }
