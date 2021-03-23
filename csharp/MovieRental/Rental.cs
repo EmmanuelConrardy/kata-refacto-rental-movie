@@ -5,7 +5,7 @@
         protected Movie _movie;
         protected int _daysRented;
 
-        public RentalBase(Movie movie, int daysRented)
+        protected RentalBase(Movie movie, int daysRented)
         {
             _movie = movie;
             _daysRented = daysRented;
@@ -42,6 +42,23 @@
         }
     }
 
+    public class RentalRegular : RentalBase
+    {
+        public RentalRegular(Movie movie, int daysRented) : base(movie, daysRented)
+        {
+        }
+
+        public override double GetAmount()
+        {
+            var amount = 2.0;
+            if (_daysRented > 2)
+                amount += (_daysRented - 2) * 1.5;
+            if (_daysRented > 10)
+                amount -= (_daysRented - 10) * 0.5;
+            return amount;
+        }
+    }
+
     public class Rental
     {
         private Movie _movie;
@@ -74,7 +91,7 @@
             switch (_movie.getPriceCode())
             {
                 case Movie.REGULAR:
-                    amount = CalcAmountRegular(amount);
+                    amount = new RentalRegular(_movie,_daysRented).GetAmount();
                     break;
                 case Movie.NEW_RELEASE:
                     amount = new RentalNewRelease(_movie, _daysRented).GetAmount();
@@ -84,16 +101,6 @@
                     break;
             }
 
-            return amount;
-        }
-
-        private double CalcAmountRegular(double amount)
-        {
-            amount += 2;
-            if (_daysRented > 2)
-                amount += (_daysRented - 2) * 1.5;
-            if (_daysRented > 10)
-                amount -= (_daysRented - 10) * 0.5;
             return amount;
         }
     }
