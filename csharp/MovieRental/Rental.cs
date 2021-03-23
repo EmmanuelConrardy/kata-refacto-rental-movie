@@ -32,22 +32,40 @@
             switch (_movie.getPriceCode())
             {
                 case Movie.REGULAR:
-                    amount += 2;
-                    if (_daysRented > 2)
-                        amount += (_daysRented - 2) * 1.5;
-                    if (_daysRented > 10)
-                        amount -= (_daysRented - 10) * 0.5;
+                    amount = CalcAmountRegular(amount);
                     break;
                 case Movie.NEW_RELEASE:
-                    amount += _daysRented * 3;
+                    amount = CalcAmountNewRelease(amount);
                     break;
                 case Movie.CHILDRENS:
-                    amount += 1.5;
-                    if (_daysRented > 3)
-                        amount += (_daysRented - 3) * 1.5;
+                    amount = CalcAmountChildren(amount);
                     break;
             }
 
+            return amount;
+        }
+
+        private double CalcAmountChildren(double amount)
+        {
+            amount += 1.5;
+            if (_daysRented > 3)
+                amount += (_daysRented - 3) * 1.5;
+            return amount;
+        }
+
+        private double CalcAmountNewRelease(double amount)
+        {
+            amount += _daysRented * 3;
+            return amount;
+        }
+
+        private double CalcAmountRegular(double amount)
+        {
+            amount += 2;
+            if (_daysRented > 2)
+                amount += (_daysRented - 2) * 1.5;
+            if (_daysRented > 10)
+                amount -= (_daysRented - 10) * 0.5;
             return amount;
         }
     }
