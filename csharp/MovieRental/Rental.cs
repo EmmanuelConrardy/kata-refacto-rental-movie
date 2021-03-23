@@ -13,14 +13,7 @@
 
         public abstract double GetAmount();
 
-        public virtual int FrequentRenterPoints()
-        {
-            var frequentRenterPoints = 1;
-            // add bonus for a two day new release rental
-            if ((Movie.GetPriceCode() == Movie.NewRelease) && DaysRented > 1)
-                frequentRenterPoints++;
-            return frequentRenterPoints;
-        }
+        public abstract int FrequentRenterPoints();
 
         public string GetMovieTitle()
         {
@@ -32,6 +25,12 @@
     {
         public RentalChildren(Movie movie, int daysRented) : base(movie, daysRented)
         {
+        }
+
+        public override int FrequentRenterPoints()
+        {
+            var frequentRenterPoints = 1;
+            return frequentRenterPoints;
         }
 
         public override double GetAmount()
@@ -48,7 +47,13 @@
         public RentalNewRelease(Movie movie, int daysRented) : base(movie, daysRented)
         {
         }
-
+        public override int FrequentRenterPoints()
+        {
+            var frequentRenterPoints = 1;
+            if (DaysRented > 1)
+                frequentRenterPoints++;
+            return frequentRenterPoints;
+        }
         public override double GetAmount()
         {
             var amount = DaysRented * 3;
@@ -61,7 +66,11 @@
         public RentalRegular(Movie movie, int daysRented) : base(movie, daysRented)
         {
         }
-
+        public override int FrequentRenterPoints()
+        {
+            var frequentRenterPoints = 1;
+            return frequentRenterPoints;
+        }
         public override double GetAmount()
         {
             var amount = 2.0;
