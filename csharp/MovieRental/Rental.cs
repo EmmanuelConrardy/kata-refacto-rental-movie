@@ -28,6 +28,20 @@
             return amount;
         }
     }
+
+    public class RentalNewRelease : RentalBase
+    {
+        public RentalNewRelease(Movie movie, int daysRented) : base(movie, daysRented)
+        {
+        }
+
+        public override double GetAmount()
+        {
+            var amount = _daysRented * 3;
+            return amount;
+        }
+    }
+
     public class Rental
     {
         private Movie _movie;
@@ -63,19 +77,13 @@
                     amount = CalcAmountRegular(amount);
                     break;
                 case Movie.NEW_RELEASE:
-                    amount = CalcAmountNewRelease(amount);
+                    amount = new RentalNewRelease(_movie, _daysRented).GetAmount();
                     break;
                 case Movie.CHILDRENS:
                     amount =  new RentalChildren(_movie,_daysRented).GetAmount();
                     break;
             }
 
-            return amount;
-        }
-
-        private double CalcAmountNewRelease(double amount)
-        {
-            amount += _daysRented * 3;
             return amount;
         }
 
