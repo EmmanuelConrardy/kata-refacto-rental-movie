@@ -1,4 +1,6 @@
-﻿namespace MovieRental
+﻿using System.Collections.Generic;
+
+namespace MovieRental
 {
     public abstract class RentalBase
     {
@@ -78,6 +80,27 @@
                 amount += (DaysRented - 2) * 1.5;
             if (DaysRented > 10)
                 amount -= (DaysRented - 10) * 0.5;
+            return amount;
+        }
+    }
+
+    public class Rentals
+    {
+        private readonly List<RentalBase> _rentalsBase = new List<RentalBase>();
+
+        public void AddRental(RentalBase rental)
+        {
+            _rentalsBase.Add(rental);
+        }
+
+        public double GetAmount()
+        {
+            double amount = 0;
+            foreach (var rental in _rentalsBase)
+            {
+                amount += rental.GetAmount();
+            }
+
             return amount;
         }
     }

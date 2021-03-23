@@ -6,6 +6,7 @@ namespace MovieRental
     {
         private readonly string _name;
         private readonly List<RentalBase> _rentalsBase = new List<RentalBase>();
+        private readonly Rentals _rentals = new Rentals();
 
         public Customer(string name)
         {
@@ -15,6 +16,7 @@ namespace MovieRental
         public void AddRental(RentalBase arg)
         {
             _rentalsBase.Add(arg);
+            _rentals.AddRental(arg);
         }
 
         public string GetName()
@@ -24,7 +26,6 @@ namespace MovieRental
 
         public string Statement()
         {
-            double totalAmount = 0;
             string result = "Rental Record for " + GetName() + "\n";
             var frequentRenterPoints = 0;
 
@@ -33,9 +34,9 @@ namespace MovieRental
                 result += "\t" + rental.GetMovieTitle() + "\t" + rental.GetAmount() + "\n";
 
                 frequentRenterPoints += rental.FrequentRenterPoints();
-
-                totalAmount += rental.GetAmount();
             }
+
+            var totalAmount = _rentals.GetAmount();
 
             // add footer lines
             result += "Amount owed is " + totalAmount + "\n";
